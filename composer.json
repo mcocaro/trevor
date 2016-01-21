@@ -1,0 +1,22 @@
+{
+	"name": "iturricf/ci-trevor",
+	"description": "A tiny PHP RPC Server with MsgPack",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Cristian Iturri",
+			"email": "cristian@ringcaptcha.com"
+		}
+	],
+	"require": {
+		"php": ">=5.4",
+		"ext-msgpack": "*",
+		"react/react": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Trevor\\": "src/"
+		}
+	},
+	"minimum-stability": "dev"
+}
