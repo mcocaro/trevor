@@ -21,7 +21,7 @@ class Server extends BaseServer
 
     public function onConnection(Stream $conn)
     {
-        echo "\nConnected: {$conn->getRemoteAddress()}";
+        printf("Connected: %s\n", $conn->getRemoteAddress());
 
         $conn->on('data', [$this, 'onData']);
         $conn->on('end', [$this, 'onEnd']);
@@ -29,15 +29,15 @@ class Server extends BaseServer
 
     public function onEnd(Stream $conn)
     {
-        echo "\nDisconnected client: {$conn->getRemoteAddress()}";
+        printf("Disconnected client: %s\n", $conn->getRemoteAddress());
     }
 
     public function onData($data, Stream $conn)
     {
         $message = msgpack_unpack($data);
 
-        echo "\nRequested method: {$message['method']}";
-        echo "\nRequested params: " . print_r($message['params'], true);
+        printf("Request method: %s\n", $message['method']);
+        printf("Request params: %s\n", print_r($message['params'], true));
 
         $result = $this->handler->process($message);
 
